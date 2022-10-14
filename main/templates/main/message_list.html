@@ -1,0 +1,12 @@
+{%extends 'base.html'%}
+
+{%block title%}Сообщения{%endblock title%}
+
+{%block content%}
+{%for u in users%}
+    <div>
+        <a href="{%url 'message' u.pk%}">{{u.username}}</a>
+    </div>
+
+{%endfor%}
+{%endblock content%}

@@ -1,0 +1,44 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block title%}Сообщения{%endblock title%}
+
+{%block content%}
+
+<h1>Chat</h1>
+<div>
+    <p id="target_name">{{user.username}}</p>
+    <p id="chat_code">{{code}}</p>
+
+</div>
+
+<div class="chat">
+    <div class="message_list">
+        {%for m in messages%}
+            <div class="message_container">
+                <img src="{{m.sourceId.image.url}}" class="message_img" alt="">
+
+                <div class="message_content">
+                    <p class="sourceId">{{m.sourceId}} <span>{{m.createdAt|date:"j N G:i:s"}}
+                        <!-- {%ifchanged%}
+                            {{m.updatedAt|date:"N j G i s"}} (updated)
+                        {%endifchanged%} -->
+                    </span></p>
+                    <div class="message">{{m.message}}</div>
+                </div>
+                
+            </div>
+        {%endfor%}
+    </div>
+    <form action="" method="post" class="chat_form">
+        {%csrf_token%}
+        {%for f in form%}
+            {{f}}
+        {%endfor%}
+        <button id="form_btn" type="submit">></button>
+    </form>
+</div>
+
+
+
+<script src="{%static 'js/chat.js'%}"></script>
+{%endblock content%}

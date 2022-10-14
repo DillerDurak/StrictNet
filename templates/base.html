@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+{%load static%}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'css/main.css'%}">
+    <title>{%block title%}{%endblock title%}</title>
+</head>
+<body>
+
+    <header class="header">
+        <div class="header__content">
+            <a class="logo" href="{%url 'home'%}">
+                <img src="" alt="" class="logo_img">
+
+                <span class="logo_title">Лого</span>
+            </a>
+            
+            <ul class="nav_menu">
+                <li class="menu_item"><a href="{%url 'message_list'%}">Сообщения</a></li>
+                <li class="menu_item">Друзья</li>
+                <li class="menu_item">Группы</li>
+            </ul>
+
+            <form action="" class="search_form">
+                <input type="text" class="search_input" placeholder="Search...">
+            </form>
+
+            {%if request.user.is_authenticated%}
+            <div class="profile">
+                <img src="{{request.user.image.url}}" id="user_img" alt="">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 330 330" style="enable-background:new 0 0 330 330;" xml:space="preserve">
+                <path id="XMLID_224_" d="M325.606,229.393l-150.004-150C172.79,76.58,168.974,75,164.996,75c-3.979,0-7.794,1.581-10.607,4.394
+                    l-149.996,150c-5.858,5.858-5.858,15.355,0,21.213c5.857,5.857,15.355,5.858,21.213,0l139.39-139.393l139.397,139.393
+                    C307.322,253.536,311.161,255,315,255c3.839,0,7.678-1.464,10.607-4.394C331.464,244.748,331.464,235.251,325.606,229.393z"/>
+                </svg>
+
+            </div>
+            <div class="profile_menu">
+                <h4 class="profile_username">{{request.user.username}}</h4>
+                <a href="{%url 'logout'%}">Выйти</a>
+            </div>
+            {%else%}
+                <a href="{%url 'login'%}" class="login">Войти</a>
+            {%endif%}
+        </div>    
+    </header>
+
+    <div class="container">
+        {%block content%}
+
+        {%endblock content%}
+    </div>
+
+    <!-- <footer class="footer">
+        <div class="footer__content">
+            <div>
+                <a href="#">Info</a>
+                <a href="#">Info</a>
+                <a href="#">Info</a>
+            </div>
+            <div>
+                <a href="#">info-2</a>
+                <a href="#">info-2</a>
+            </div>
+            <div>
+                <a href="#">info-3</a>
+                <a href="#">info-3</a>
+                <a href="#">info-3</a>
+            </div>
+        </div>
+    </footer> -->
+    <script src="{%static 'js/main.js'%}"></script>
+</body>
+</html>
